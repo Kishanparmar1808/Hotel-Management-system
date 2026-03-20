@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Directory | Luxe Admin</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="brand">LUXE. ADMIN</div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html">📊 Dashboard</a></li>
+            <li><a href="frontdesk.html">🛎️ Front Desk</a></li>
+            <li><a href="rooms.html">🛏️ Rooms</a></li>
+            <li><a href="guests.html" class="active">👥 Guests</a></li>
+        </ul>
+        <div style="margin-top: auto;">
+            <ul class="nav-links">
+                <li><a href="index.html">⬅️ Back to Website</a></li>
+                <li><a href="index.html" style="color: #ef4444;" onclick="alert('Logged out successfully.')">🚪 Logout</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <div class="header-title">
+                <h1>Guest Directory</h1>
+                <p>Database of all registered hotel guests.</p>
+            </div>
+        </header>
+
+        <div class="recent-bookings">
+            <h2>All Guests</h2>
+            <table>
+                <thead>
+                    <tr><th>Name</th><th>Email</th><th>Total Stays</th><th>Status</th></tr>
+                </thead>
+                <tbody id="guestsTableBody">
+                    <!-- Loaded dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

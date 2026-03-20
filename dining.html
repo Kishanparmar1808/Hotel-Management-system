@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dining | Luxe Hotel</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/css/index.css">
+    <style>
+        .page-header { height: 60vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover; display: flex; align-items: center; justify-content: center; }
+        .page-header h1 { font-size: 56px; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .content-section { padding: 100px 50px; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .content-section p { font-size: 18px; color: #555; line-height: 1.8; max-width: 800px; margin: 0 auto 50px; }
+        .restaurant-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; text-align: left; }
+        .restaurant-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .restaurant-card img { width: 100%; height: 250px; object-fit: cover; }
+        .restaurant-info { padding: 30px; }
+        .restaurant-info h3 { font-size: 24px; color: #1a237e; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">LUXE.</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#rooms">Rooms</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="dashboard.html" class="btn-primary">Admin Login</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <h1>Masterpiece Culinary Experiences</h1>
+    </header>
+
+    <section class="content-section">
+        <p>Discover a world of flavors at Luxe Hotel. Our award-winning chefs blend local ingredients with international techniques to create unforgettable dining experiences.</p>
+        
+        <div class="restaurant-grid">
+            <div class="restaurant-card">
+                <img src="h.png" alt="Restaurant">
+                <div class="restaurant-info">
+                    <h3>The Azure Ocean Signature</h3>
+                    <p style="font-size: 15px; margin-bottom: 0;">Experience fine dining overlooking the ocean. Serving premium seafood and aged steaks perfectly paired with our extensive wine collection.</p>
+                </div>
+            </div>
+            <div class="restaurant-card">
+                <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bar">
+                <div class="restaurant-info">
+                    <h3>Skyline Lounge & Bar</h3>
+                    <p style="font-size: 15px; margin-bottom: 0;">The perfect spot for evening cocktails and tapas. Enjoy live jazz music while taking in the breathtaking panoramic views of the city.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

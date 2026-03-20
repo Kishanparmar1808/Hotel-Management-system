@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Contact Button</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; }
+        .navbar { background: white; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 100; }
+        .btn-contact { background: #FF6B6B; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; cursor: pointer; }
+        .content { height: 150vh; padding-top: 100px; }
+        .footer { background: #222; color: white; padding: 50px; text-align: center; }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="javascript:void(0);" class="btn-contact">Contact Us</a>
+    </nav>
+    
+    <div class="content">
+        <h1 style="text-align: center;">Scroll down to see footer</h1>
+        <p style="text-align: center;">Click "Contact Us" button to scroll to footer</p>
+    </div>
+    
+    <footer id="footer" class="footer">
+        <h2>Contact Us</h2>
+        <p>This is the footer section</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var contactBtn = document.querySelector('.btn-contact');
+            console.log('Contact button found:', contactBtn);
+            if (contactBtn) {
+                contactBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Button clicked!');
+                    var footer = document.getElementById('footer');
+                    console.log('Footer found:', footer);
+                    if (footer) {
+                        footer.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

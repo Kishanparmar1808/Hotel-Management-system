@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Luxe Hotel</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">LUXE. ADMIN</div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="active">📊 Dashboard</a></li>
+            <li><a href="frontdesk.html">🛎️ Front Desk</a></li>
+            <li><a href="rooms.html">🛏️ Rooms</a></li>
+            <li><a href="guests.html">👥 Guests</a></li>
+        </ul>
+        <div style="margin-top: auto;">
+            <ul class="nav-links">
+                <li><a href="index.html">⬅️ Back to Website</a></li>
+                <li><a href="index.html" style="color: #ef4444;" onclick="alert('Logged out successfully.')">🚪
+                        Logout</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header-title">
+                <h1>Overview</h1>
+                <p>Welcome back, Admin. Here is what's happening today.</p>
+            </div>
+        </header>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon icon-blue">💰</div>
+                <div class="stat-title">Total Revenue</div>
+                <div class="stat-value" id="totalRevenue">₹0.00</div>
+                <div class="stat-trend">↑ 12.5% from last week</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-purple">📅</div>
+                <div class="stat-title">Total Bookings</div>
+                <div class="stat-value" id="totalBookings">0</div>
+                <div class="stat-trend">↑ 4.2% from last week</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-green">🛏️</div>
+                <div class="stat-title">Available Rooms</div>
+                <div class="stat-value">Dynamic</div>
+                <div class="stat-trend" style="color: #94a3b8;">See Rooms Page</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-orange">🛎️</div>
+                <div class="stat-title">Pending Arrivals</div>
+                <div class="stat-value" id="pendingArrivals">0</div>
+                <div class="stat-trend" style="color: #94a3b8;">Awaiting Check-in</div>
+            </div>
+        </div>
+
+        <!-- Recent Bookings Table -->
+        <div class="recent-bookings">
+            <h2>Recent Reservations</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Guest Name</th>
+                        <th>Room Type</th>
+                        <th>Check in</th>
+                        <th>Check out</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="dashboardTableBody">
+                    <!-- Loaded dynamically via app.js -->
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

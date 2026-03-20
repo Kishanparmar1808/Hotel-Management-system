@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking | Luxe Hotel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/index.css">
+    <style>
+        .booking-page {
+            padding: 120px 50px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .booking-form {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #1a237e;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #1a237e, #3949ab);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+        }
+
+        .booking-success {
+            display: none;
+            text-align: center;
+            color: #22c55e;
+            font-size: 24px;
+            font-weight: 600;
+            padding: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">LUXE.</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#rooms">Rooms</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="dashboard.html" class="btn-primary">Admin Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="booking-page">
+        <h2 class="section-title">Secure Your Reservation</h2>
+
+        <div id="successMessage" class="booking-success">
+            ✅ Booking Confirmed Successfully!<br><span style="font-size:16px; color:#666; font-weight:400;">We look
+                forward to hosting you. Redirecting to home...</span>
+        </div>
+
+        <form id="bookingForm" class="booking-form" onsubmit="submitForm(event)">
+            <div class="form-group">
+                <label>Room Type</label>
+                <select id="roomSelected">
+                    <option value="Deluxe Ocean View">Deluxe Ocean View - ₹299/night</option>
+                    <option value="Executive Suite">Executive Suite - ₹499/night</option>
+                    <option value="Presidential Penthouse">Presidential Penthouse - ₹999/night</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="guestNameInput" required placeholder="Enter Name">
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="emailInput" required placeholder="Enter Email">
+            </div>
+            <div style="display:flex; gap:20px;">
+                <div class="form-group" style="flex:1;">
+                    <label>Check-in</label>
+                    <input type="date" id="checkInInput" required>
+                </div>
+                <div class="form-group" style="flex:1;">
+                    <label>Check-out</label>
+                    <input type="date" id="checkOutInput" required>
+                </div>
+            </div>
+            <button type="submit" class="btn-submit">Confirm Booking</button>
+        </form>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Pre-select room based on URL parameter if it exists
+        window.onload = function () {
+            var urlParams = new URLSearchParams(window.location.search);
+            var room = urlParams.get('room');
+            if (room) {
+                var select = document.getElementById('roomSelected');
+                for (var i = 0; i < select.options.length; i++) {
+                    if (select.options[i].value === room) {
+                        select.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            // Date constraints
+            var checkInInput = document.getElementById("checkInInput");
+            var checkOutInput = document.getElementById("checkOutInput");
+
+            // Set min check-in date to today
+            var today = new Date();
+            var year = today.getFullYear();
+            var month = String(today.getMonth() + 1).padStart(2, '0');
+            var day = String(today.getDate()).padStart(2, '0');
+            checkInInput.min = `${year}-${month}-${day}`;
+
+            checkInInput.addEventListener("change", function () {
+                if (this.value) {
+                    var checkInDate = new Date(this.value);
+
+                    var minDate = new Date(checkInDate);
+                    minDate.setDate(minDate.getDate() + 1);
+                    var minYear = minDate.getFullYear();
+                    var minMonth = String(minDate.getMonth() + 1).padStart(2, '0');
+                    var minDay = String(minDate.getDate()).padStart(2, '0');
+                    checkOutInput.min = `${minYear}-${minMonth}-${minDay}`;
+
+                    var maxDate = new Date(checkInDate);
+                    maxDate.setDate(maxDate.getDate() + 15);
+                    var maxYear = maxDate.getFullYear();
+                    var maxMonth = String(maxDate.getMonth() + 1).padStart(2, '0');
+                    var maxDay = String(maxDate.getDate()).padStart(2, '0');
+                    checkOutInput.max = `${maxYear}-${maxMonth}-${maxDay}`;
+
+                    if (checkOutInput.value) {
+                        var outDate = new Date(checkOutInput.value);
+                        if (outDate < minDate || outDate > maxDate) {
+                            checkOutInput.value = "";
+                        }
+                    }
+                }
+            });
+        };
+
+        function submitForm(e) {
+            e.preventDefault();
+
+            // Save to LocalStorage real-time DB
+            let room = document.getElementById("roomSelected").value;
+            let name = document.getElementById("guestNameInput").value;
+            let email = document.getElementById("emailInput").value;
+            let checkIn = document.getElementById("checkInInput").value;
+            let checkOut = document.getElementById("checkOutInput").value;
+
+            saveNewBooking(name, email, room, checkIn, checkOut);
+
+            document.getElementById('bookingForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            setTimeout(function () {
+                window.location.href = 'index.html';
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
